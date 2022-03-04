@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  background-color: #f9f9f9 !important;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +14,83 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.heading {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a9a9a9;
+}
+
+.labels {
+  font-size: 12px;
+  font-weight: 500;
+  color: #7c7c7c;
+}
+
+.btn1 {
+  width: 48%;
+  margin-right: 2%;
+  color: #555 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.btn2 {
+  width: 48%;
+  margin-left: 2%;
+  color: #555 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.delete {
+  position: relative;
+  span {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    position: absolute;
+    right: 10px !important;
+    font-size: 20px;
+    top: 0;
+    display: inline;
+    cursor: pointer;
+  }
+}
+
+// Modify Bootstrap Css
+.btn-primary {
+  color: #fff !important;
+  background-color: #18171c !important;
+  border-color: #18171c !important;
+}
+
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  color: #fff;
+  background-color: #18171c !important;
+  border-color: #18171c !important;
+  box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.5) !important;
+}
+
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #8d8d8d !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem rgba(29, 29, 29, 0.25) !important;
+}
+
+.btn-check:focus + .btn-success,
+.btn-success:focus {
+  color: #fff;
+  background-color: #069e57 !important;
+  border-color: #038347 !important;
+  box-shadow: 0 0 0 0.1rem rgba(213, 255, 235, 0.5) !important;
 }
