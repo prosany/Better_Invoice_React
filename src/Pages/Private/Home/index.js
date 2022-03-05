@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import restrictDate from "../../../Helpers/restrictDate";
 
 const Home = () => {
+  const information = useSelector((state) => state.login);
+
   const [response, setResponse] = useState({
     loading: false,
     error: false,
@@ -79,7 +82,7 @@ const Home = () => {
         { ...inputs, services },
         {
           headers: {
-            refresh_token: localStorage.getItem("refreshToken"),
+            refresh_token: information.user.refreshToken,
           },
         }
       );
@@ -89,6 +92,18 @@ const Home = () => {
           success: true,
           successMessage: apiResponse.data.message,
           error: false,
+          loading: false,
+          link: apiResponse.data.file,
+        }));
+        return;
+      }
+      if (apiResponse.data.status === 0) {
+        setResponse((prev) => ({
+          ...prev,
+          success: false,
+          successMessage: "",
+          error: true,
+          errorMessage: apiResponse.data.message,
           loading: false,
           link: apiResponse.data.file,
         }));

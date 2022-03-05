@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { handleLogin } from "../../../Store/Authentication/Login/action";
@@ -7,8 +7,10 @@ import style from "../../../Styles/Login/login.module.scss";
 import jwt_decode from "jwt-decode";
 
 const Login = () => {
+  const information = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [showPass, setShowPass] = useState(false);
 
   const handleLogins = async (e) => {
     console.log(e);
@@ -26,13 +28,11 @@ const Login = () => {
   useEffect(() => {
     const handleToken = async () => {
       try {
-        let accessToken = localStorage.getItem("accessToken");
-        let refreshToken = localStorage.getItem("refreshToken");
-        if (!accessToken || !refreshToken) {
+        if (!information.user.accessToken || !information.user.refreshToken) {
           localStorage.clear();
         }
-        if (accessToken && refreshToken) {
-          let results = await jwt_decode(accessToken);
+        if (information.user.accessToken && information.user.refreshToken) {
+          let results = await jwt_decode(information.user.accessToken);
           console.log(results);
           if (Date.now() <= results.exp * 1000) {
             history.push("/");
@@ -43,11 +43,7 @@ const Login = () => {
       }
     };
     handleToken();
-  }, [
-    history,
-    localStorage.getItem("accessToken"),
-    localStorage.getItem("refreshToken"),
-  ]);
+  }, [history, information.user.accessToken, information.user.refreshToken]);
   return (
     <React.Fragment>
       <form onSubmit={handleLogins}>
@@ -68,21 +64,45 @@ const Login = () => {
             <label htmlFor="" className="labels">
               Password
             </label>
-            <input
-              type="password"
-              className="form-control"
-              autoComplete="off"
-              name="password"
-            />
+            <div className={style.showHidePass}>
+              <input
+                type={showPass ? "text" : "password"}
+                className="form-control"
+                autoComplete="off"
+                name="password"
+              />
+              <span onClick={() => setShowPass(!showPass)}>
+                {showPass ? (
+                  <i className="fas fa-eye"></i>
+                ) : (
+                  <i className="fas fa-eye-slash"></i>
+                )}
+              </span>
+            </div>
             <Link to="/" className={style.forgot}>
               <i className="fas fa-lock me-2"></i>Forgot Password
             </Link>
-            <button className="btn btn-primary w-100 mt-2" type="submit">
-              Login
+            <button
+              className="btn btn-primary w-100 mt-2"
+              type="submit"
+              disabled={information.processing ? true : false}
+            >
+              {information.processing ? information.processingMessage : "Login"}
             </button>
+            {information.error ? (
+              <p className="text-danger mt-3 mb-1" style={{ fontSize: 14 }}>
+                {information.errorMessage}
+              </p>
+            ) : null}
+            {information.success ? (
+              <p className="text-success mt-3 mb-1" style={{ fontSize: 14 }}>
+                {information.successMessage}
+              </p>
+            ) : null}
             <hr className={style.hr} />
             <span className={style.notAccount}>
-              Don't Have an Account? <Link>Create an Account</Link>
+              Don't Have an Account?{" "}
+              <Link to="/registration">Create an Account</Link>
             </span>
           </div>
         </div>

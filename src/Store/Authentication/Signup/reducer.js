@@ -1,6 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./actionTypes";
-import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
+import { SIGNUP_REQUEST, SIGNUP_FAILURE, SIGNUP_SUCCESS } from "./actionTypes";
 
 const initialState = {
   processing: false,
@@ -12,21 +10,20 @@ const initialState = {
   user: {},
 };
 
-const login = (state = initialState, action) => {
+const signUp = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_REQUEST:
+    case SIGNUP_REQUEST:
       state = {
         ...state,
         processing: true,
-        processingMessage: "Login in progress...",
+        processingMessage: "Signup in progress...",
         error: false,
         errorMessage: "",
         success: false,
         successMessage: "",
-        user: {},
       };
       break;
-    case LOGIN_FAILURE:
+    case SIGNUP_FAILURE:
       state = {
         ...state,
         processing: false,
@@ -35,10 +32,9 @@ const login = (state = initialState, action) => {
         errorMessage: action.payload.error,
         success: false,
         successMessage: "",
-        user: {},
       };
       break;
-    case LOGIN_SUCCESS:
+    case SIGNUP_SUCCESS:
       state = {
         ...state,
         processing: false,
@@ -54,15 +50,8 @@ const login = (state = initialState, action) => {
       break;
     default:
       state = { ...state };
-      break;
   }
   return state;
 };
 
-const persistentStore = {
-  keyPrefix: "betterInvoice-",
-  key: "login",
-  storage: storage,
-};
-
-export default persistReducer(persistentStore, login);
+export default signUp;

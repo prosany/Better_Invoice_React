@@ -6,13 +6,14 @@ const handleLogin = (data, history) => async (dispatch) => {
   try {
     const response = await post("/login", data);
     dispatch(loginSuccess(response.message, response));
-    localStorage.setItem("accessToken", response.accessToken);
-    localStorage.setItem("refreshToken", response.refreshToken);
     setTimeout(() => {
       history.push("/");
+      dispatch(loginSuccess("", response));
     }, 2000);
   } catch (error) {
-    dispatch(loginFailure(error.message || "Invalid Credentials"));
+    dispatch(
+      loginFailure(error.response.data.message || "Invalid Credentials")
+    );
   }
 };
 

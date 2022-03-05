@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import style from "../../../Styles/Navbar/navbar.module.scss";
 
 const PublicNavbar = () => {
+  const information = useSelector((state) => state.login);
   return (
     <React.Fragment>
       <div className={`${style.background} border-bottom`}>
@@ -11,7 +13,10 @@ const PublicNavbar = () => {
             className={`w-100 d-flex align-items-center justify-content-between py-1`}
           >
             <div className="d-flex align-items-center justify-content-center">
-              <Link to="/" className={`${style.links} me-2`}>
+              <Link
+                to={information.user.refreshToken ? "/" : "/login"}
+                className={`${style.links} me-2`}
+              >
                 <p>
                   <i className="fas fa-home"></i>
                 </p>
@@ -29,7 +34,10 @@ const PublicNavbar = () => {
               </p>
             </span>
             <div className="d-flex align-items-center justify-content-center">
-              <Link to="/" className={`${style.links} ms-2`}>
+              <Link
+                to={information.user.refreshToken ? "/profile" : "/login"}
+                className={`${style.links} ms-2`}
+              >
                 <p>
                   <i className="far fa-user-circle"></i>
                 </p>
