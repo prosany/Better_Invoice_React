@@ -44,6 +44,7 @@ const Login = () => {
     };
     handleToken();
   }, [history, information.user.accessToken, information.user.refreshToken]);
+
   return (
     <React.Fragment>
       <form onSubmit={handleLogins}>
