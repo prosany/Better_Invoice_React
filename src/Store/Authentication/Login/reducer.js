@@ -1,4 +1,9 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./actionTypes";
+import {
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from "./actionTypes";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
@@ -50,6 +55,17 @@ const login = (state = initialState, action) => {
         user: {
           ...action.payload.user,
         },
+      };
+      break;
+    case LOGOUT:
+      state = {
+        processing: false,
+        processingMessage: "",
+        error: false,
+        errorMessage: "",
+        success: false,
+        successMessage: "",
+        user: {},
       };
       break;
     default:

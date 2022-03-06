@@ -114,7 +114,8 @@ const Home = () => {
         ...prev,
         success: false,
         error: true,
-        errorMessage: error.message,
+        errorMessage:
+          error.response.data.message || "PDF Generation Failed, Try Again",
         loading: false,
       }));
     }
@@ -351,7 +352,7 @@ const Home = () => {
                 </div>
                 <div className="col-md-2">
                   <label htmlFor="serviceDays" className="labels mb-2">
-                    Days / Months
+                    Days
                   </label>
                   <input
                     type="number"
