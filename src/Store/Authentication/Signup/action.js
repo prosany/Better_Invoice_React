@@ -7,11 +7,13 @@ const handleSignUp = (data, history) => async (dispatch) => {
     const response = await post("/registration", data);
     dispatch(signUpSuccess(response.message, response));
     setTimeout(() => {
-      history.push("/");
+      history.push("/verify-account");
       dispatch(signUpSuccess("", response));
-    }, 2000);
+    }, 5000);
   } catch (error) {
-    dispatch(signUpFailure(error.message || "Something went wrong"));
+    dispatch(
+      signUpFailure(error.response.data.message || "Something went wrong")
+    );
   }
 };
 

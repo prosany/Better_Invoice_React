@@ -13,7 +13,6 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
 
   const handleLogins = async (e) => {
-    console.log(e);
     e.preventDefault();
     try {
       const data = {
