@@ -136,7 +136,14 @@ const VerifyAccount = () => {
             ></i>
             <p className={style.tagline}>Specially Made For Kalpas Employee</p>
           </span>
-          {process.error ? null : (
+          {process.error ? (
+            <div className={`${style.loginForm} shadow-sm rounded text-center`}>
+              <span className={style.notAccount}>
+                <p className="m-0">Please Check Your Email for OTP & Secret</p>
+                <Link to="/">Go Back To Home</Link>
+              </span>
+            </div>
+          ) : (
             <div className={`${style.loginForm} shadow-sm rounded text-center`}>
               <h4 className="text-success">
                 <i className="fas fa-swimmer"></i>
@@ -149,6 +156,9 @@ const VerifyAccount = () => {
               <span className={style.notAccount}>
                 Don't Have an Account?{" "}
                 <Link to="/registration">Create an Account</Link>
+              </span>
+              <span className={style.notAccount}>
+                <Link to="/">Home</Link>
               </span>
             </div>
           )}
@@ -211,6 +221,9 @@ const VerifyAccount = () => {
               <span className={style.notAccount}>
                 Don't Have an Account?{" "}
                 <Link to="/registration">Create an Account</Link>
+              </span>
+              <span className={style.notAccount}>
+                <Link to="/">Home</Link>
               </span>
             </div>
           </div>
