@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import Footer from "../../../Components/Footer";
 import restrictDate from "../../../Helpers/restrictDate";
 
 const Home = () => {
@@ -627,6 +628,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </React.Fragment>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import Footer from "../../../Components/Footer";
 import { handleSignUp } from "../../../Store/Authentication/Signup/action";
 import style from "../../../Styles/Login/login.module.scss";
 
@@ -152,6 +153,7 @@ const Registration = () => {
               Already Have an Account? <Link to="/login">Login</Link>
             </span>
           </div>
+          <Footer />
         </div>
       </form>
     </React.Fragment>

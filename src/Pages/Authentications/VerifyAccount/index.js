@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
+import Footer from "../../../Components/Footer";
 import style from "../../../Styles/Login/login.module.scss";
 
 const VerifyAccount = () => {
@@ -172,6 +173,7 @@ const VerifyAccount = () => {
               {process.successMessage}
             </p>
           ) : null}
+          <Footer />
         </div>
       )}
 
@@ -226,6 +228,7 @@ const VerifyAccount = () => {
                 <Link to="/">Home</Link>
               </span>
             </div>
+            <Footer />
           </div>
         </form>
       )}

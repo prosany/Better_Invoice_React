@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { handleLogin } from "../../../Store/Authentication/Login/action";
 import style from "../../../Styles/Login/login.module.scss";
 import jwt_decode from "jwt-decode";
+import Footer from "../../../Components/Footer";
 
 const Login = () => {
   const information = useSelector((state) => state.login);
@@ -109,6 +110,7 @@ const Login = () => {
               <Link to="/verify-account">Activate Your Account</Link>
             </span>
           </div>
+          <Footer />
         </div>
       </form>
     </React.Fragment>

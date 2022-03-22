@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import Footer from "../../../Components/Footer";
 import { handleLogout } from "../../../Store/Authentication/Login/action";
 
 const Profile = () => {
@@ -158,6 +159,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </React.Fragment>
   );
 };
