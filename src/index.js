@@ -9,7 +9,10 @@ import store, { persistor } from "./Store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PersistGate } from "redux-persist/integration/react";
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+const date = new Date().getDate();
+
+axios.defaults.baseURL =
+  date <= 15 ? process.env.REACT_APP_API_URL : process.env.REACT_APP_API_URL2;
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,7 +1,10 @@
 import axios from "axios";
 
+const date = new Date().getDate();
+
 const axiosAPI = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL:
+    date <= 15 ? process.env.REACT_APP_API_URL : process.env.REACT_APP_API_URL2,
 });
 
 axiosAPI.interceptors.response.use(
