@@ -104,6 +104,10 @@ const Login = () => {
               Don't Have an Account?{" "}
               <Link to="/registration">Create an Account</Link>
             </span>
+            <span className={style.notAccount}>
+              Already Registered?{" "}
+              <Link to="/verify-account">Activate Your Account</Link>
+            </span>
           </div>
         </div>
       </form>

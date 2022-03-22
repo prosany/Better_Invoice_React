@@ -1,11 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import restrictDate from "../../../Helpers/restrictDate";
 
 const Home = () => {
   const information = useSelector((state) => state.login);
 
+  const logoRef = useRef(null);
   const [response, setResponse] = useState({
     loading: false,
     error: false,
@@ -14,6 +15,24 @@ const Home = () => {
     successMessage: "",
     link: "",
   });
+  const [kalpasLogo, setKalpasLogo] = useState(false);
+  const [customLogo, setCustomLogo] = useState({
+    isCustom: false,
+    uploading: false,
+    logo: "",
+    error: false,
+  });
+
+  const returnLogo = () => {
+    if (kalpasLogo) {
+      return "https://res.cloudinary.com/mahabubsunny/image/upload/v1645815150/Logo_dcwkcx.png";
+    } else if (customLogo.isCustom) {
+      return customLogo.logo;
+    } else {
+      return "https://res.cloudinary.com/mahabubsunny/image/upload/v1647976539/betterInvoice_y1uuhm.png";
+    }
+  };
+
   const [inputs, setInputs] = useState({
     biNumber: "001",
     companyName: "Kalpas Innovation Pvt. Ltd.",
@@ -38,6 +57,51 @@ const Home = () => {
     amount: 200,
   });
   const [services, setServices] = useState([]);
+
+  const handleLogoUpload = (e) => {
+    setCustomLogo((prev) => ({
+      ...prev,
+      isCustom: false,
+      error: false,
+      logo: "",
+      uploading: true,
+    }));
+    const customLogo = new FormData();
+    // customLogo.set("key", "217e4a7b8abfe51f2a79a5865e0b806a");
+    // customLogo.append("image", e.target.files[0]);
+
+    customLogo.append("file", e.target.files[0]);
+    customLogo.append("upload_preset", "betterInvoice");
+    customLogo.append("cloud_name", "mahabubsunny");
+    // https://api.imgbb.com/1/upload
+
+    axios
+      .post(
+        "https://api.cloudinary.com/v1_1/mahabubsunny/image/upload",
+        customLogo
+      )
+      .then(function (response) {
+        setCustomLogo((prev) => ({
+          ...prev,
+          isCustom: true,
+          error: false,
+          uploading: false,
+          // logo: response.data.data.display_url,
+          logo: response.data.url,
+        }));
+        logoRef.current.value = "";
+      })
+      .catch(function (error) {
+        setCustomLogo((prev) => ({
+          ...prev,
+          isCustom: false,
+          error: true,
+          logo: "",
+          uploading: false,
+        }));
+        logoRef.current.value = "";
+      });
+  };
 
   const handleInputs = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -79,7 +143,7 @@ const Home = () => {
       }));
       const apiResponse = await axios.post(
         "/create-invoice",
-        { ...inputs, services },
+        { ...inputs, companyLogo: returnLogo(), services },
         {
           headers: {
             refresh_token: information.user.refreshToken,
@@ -156,6 +220,53 @@ const Home = () => {
                   name="biNumber"
                   onChange={handleInputs}
                 />
+              </div>
+              <div className="col-md-6">
+                <label htmlFor="companyLogo" className="labels mb-2">
+                  Company Logo (By Default BetterInvoice Logo)
+                </label>
+                <input
+                  type="file"
+                  ref={logoRef}
+                  id="companyLogo"
+                  className="form-control"
+                  name="companyLogo"
+                  onChange={handleLogoUpload}
+                  disabled={kalpasLogo}
+                />
+                {customLogo.isCustom && (
+                  <p
+                    className="mt-1 mb-0 text-success"
+                    style={{ fontSize: 12 }}
+                  >
+                    Custom Logo Uploaded Successful
+                  </p>
+                )}
+                {customLogo.error && (
+                  <p className="mt-1 mb-0 text-danger" style={{ fontSize: 12 }}>
+                    Custom Logo Upload Failed
+                  </p>
+                )}
+                {customLogo.uploading && (
+                  <p className="mt-1 mb-0 text-info" style={{ fontSize: 12 }}>
+                    Custom Logo Uploading...
+                  </p>
+                )}
+                <div className="mt-2">
+                  <input
+                    type="checkbox"
+                    id="isKalpasLogo"
+                    className="form-check-input"
+                    name="isKalpasLogo"
+                    onClick={() => setKalpasLogo(!kalpasLogo)}
+                  />
+                  <label
+                    htmlFor="isKalpasLogo"
+                    className="form-check-label ms-2"
+                  >
+                    Use Kalpas Logo
+                  </label>
+                </div>
               </div>
             </div>
             <p className="heading mt-3 mb-0">Company Information</p>

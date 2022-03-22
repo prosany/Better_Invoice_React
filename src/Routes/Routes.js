@@ -15,7 +15,7 @@ const publicRoute = [
   { path: "/registration", component: Registration },
   { path: "/forget-password", component: ForgetPassword },
   { path: "/verify-account/:secret/:otp", component: VerifyAccount },
-  { path: "/verify-account/", component: VerifyAccount },
+  { path: "/verify-account", component: VerifyAccount },
   { path: "/plans", component: Plans },
 ];
 
