@@ -1,0 +1,35 @@
+# This is a Netlify Deploy workflow
+
+name: Netlify Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build the Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.3.2
+        
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.0.0
+        with:
+          node-version: 14.x
+        
+      - name: Install Apps Dependencies
+        run: yarn install --production
+
+      - name: Build The Application
+        run: yarn run build
+        
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2.3
+        with:
+          publish-dir: "./build"
+          production-branch: main
+          deploy-message: "${{ github.event.head_commit.message }}"
+        env:
+          NETLIFY_SITE_ID: "${{ secrets.NETLIFY_SITE_ID }}"
+          NETLIFY_AUTH_TOKEN: "${{ secrets.NETLIFY_AUTH_TOKEN }}"
