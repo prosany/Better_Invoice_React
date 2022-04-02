@@ -42,7 +42,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn run build && netlify deploy --dir build --site 1450d12e-0d93-46e6-b3ff-33d9bcafc103 --auth OmzC8WLqs-kcT8a56Fi78vAYZ8yvnpXlbB1tAG3DWB4 --prod"
   },
   "eslintConfig": {
     "extends": [
