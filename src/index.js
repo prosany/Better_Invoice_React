@@ -9,6 +9,9 @@ import store, { persistor } from "./Store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PersistGate } from "redux-persist/integration/react";
 
+if (window.location.href.includes("netlify")) {
+  window.location.href = "https://better-invoice.cf/";
+}
 const date = new Date().getDate();
 
 axios.defaults.baseURL =
