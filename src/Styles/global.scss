@@ -34,6 +34,7 @@ code {
   color: #555 !important;
   font-size: 14px !important;
   font-weight: 500 !important;
+  z-index: 1 !important;
   &:disabled {
     background-color: #b80c0c !important;
     color: #a9a9a9 !important;
@@ -47,11 +48,13 @@ code {
   color: #555 !important;
   font-size: 14px !important;
   font-weight: 500 !important;
+  z-index: 1 !important;
 }
 
 .sticky {
   position: sticky;
   top: 0;
+  z-index: 100 !important;
 }
 
 .delete {
