@@ -124,7 +124,7 @@ const VerifyAccount = () => {
       };
       activeAccount();
     }
-  }, [otp, secret]);
+  }, [history, otp, secret]);
   return (
     <React.Fragment>
       {secret && otp && (

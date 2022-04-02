@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Footer from "../../../Components/Footer";
 import restrictDate from "../../../Helpers/restrictDate";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const information = useSelector((state) => state.login);

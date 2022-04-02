@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import { post } from "../../Helpers/APIHelper";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loginSuccess } from "../../Store/Authentication/Login/action";
+import { useSelector } from "react-redux";
 
 export const PrivateRoute = ({
   component: Component,
@@ -13,8 +9,6 @@ export const PrivateRoute = ({
   ...rest
 }) => {
   const information = useSelector((state) => state.login);
-  const dispatch = useDispatch();
-  const history = useHistory();
   // useEffect(() => {
   //   const handleToken = async () => {
   //     try {
