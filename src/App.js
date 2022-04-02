@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { publicRoute, privateRoute, errorRoute } from "./Routes/Routes";
 import { PrivateRoute } from "./Routes/Middleware";
 import Layouts from "./Layouts";
 import NoLoginLayout from "./Layouts/NoLoginLayout";
+import { useLocation } from "react-router-dom";
 
 const App = () => {
+  const { pathname, search } = useLocation();
+  useLayoutEffect(() => {
+    if (pathname.includes("netlify")) {
+      window.location.href = "https://better-invoice.cf/";
+    }
+  }, [pathname, search]);
   return (
     <React.Fragment>
       <Router>
