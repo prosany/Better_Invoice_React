@@ -7,12 +7,12 @@ import NoLoginLayout from "./Layouts/NoLoginLayout";
 import { useLocation } from "react-router-dom";
 
 const App = () => {
-  const { pathname, search } = useLocation();
+  const { pathname } = useLocation();
   useEffect(() => {
     if (pathname.includes("netlify")) {
       window.location.href = "https://better-invoice.cf/";
     }
-  }, [pathname, search]);
+  }, [pathname]);
   return (
     <React.Fragment>
       <Router>
