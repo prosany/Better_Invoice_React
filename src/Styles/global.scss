@@ -34,6 +34,11 @@ code {
   color: #555 !important;
   font-size: 14px !important;
   font-weight: 500 !important;
+  &:disabled {
+    background-color: #b80c0c !important;
+    color: #a9a9a9 !important;
+    pointer-events: none !important;
+  }
 }
 
 .btn2 {

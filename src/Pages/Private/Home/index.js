@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Footer from "../../../Components/Footer";
 import restrictDate from "../../../Helpers/restrictDate";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const information = useSelector((state) => state.login);
@@ -565,22 +566,31 @@ const Home = () => {
               </p>
             )}
             <div className="my-3">
-              <button
-                className="btn btn1 bg-white rounded shadow-sm"
-                onClick={() =>
-                  response.link !== "" && window.location.replace(response.link)
+              <a
+                href={response.link !== "" && response.link}
+                target="Preview Document - Invoice"
+                className={
+                  !response.link
+                    ? "btn btn1 bg-white rounded shadow-sm disabled"
+                    : "btn btn1 bg-white rounded shadow-sm"
                 }
               >
                 Preview
-              </button>
-              <button
-                className="btn btn2 bg-white rounded shadow-sm"
-                onClick={() =>
-                  response.link !== "" && window.location.replace(response.link)
+              </a>
+              <a
+                href={response.link !== "" && response.link}
+                target="_blank"
+                rel="noreferrer"
+                className={
+                  !response.link
+                    ? "btn btn1 bg-white rounded shadow-sm disabled"
+                    : "btn btn1 bg-white rounded shadow-sm"
                 }
+                download
+                type="application/pdf"
               >
                 Download
-              </button>
+              </a>
             </div>
             <p className="heading mb-3 pt-3">Currency</p>
             <div className="form-control text-muted" disabled>
