@@ -39,7 +39,7 @@ const Home = () => {
     companyName: "Kalpas Innovation Pvt. Ltd.",
     cmAddress1: "KLE-CTIE, R.H.KulkarniBuilding, KLETU Campus,",
     cmAddress2: "Vidyanagar, Hubballi, Karnataka – 580031",
-    cmEmail: "Hello@Kalpas.in",
+    cmEmail: "kishore@kalpas.in",
     cmWebsite: "www.Kalpas.in",
     urName: "Mr. Better Invoice",
     urPosition: "Front-End Developer (React)",
