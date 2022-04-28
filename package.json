@@ -42,7 +42,11 @@
     "start": "react-scripts start",
     "build": "set GENERATE_SOURCEMAP=false && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:pro": "yarn run build && netlify deploy --dir build --site 3ab95ce4-24d9-4216-aae3-59275db68cc9 --auth 2aUQqLpGK4pqUf9QUaBkEva-mdD0EgvkGL_esYpNBJs --prod",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write \"**/*.{js,jsx,json,md,html,css,less,scss}\""
   },
   "eslintConfig": {
     "extends": [
